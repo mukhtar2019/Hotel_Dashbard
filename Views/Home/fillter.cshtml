@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Hotel>
+
+<form asp-controller="Home" asp-action="fillter">
+    <div class="row text-start">
+        <div class="col-sm-3">
+            <button class="btn btn-success" type="submit">بحث</button>
+        </div>
+        <div class="col-sm-9">
+            <input type="text" class="from-control from-control-sm" name="city" placeholder="ادخل اسم المدينه" />
+        </div>
+    </div>
+</form>
+<table class="table table-bordered mt-5" dir="rtl">
+    <thead>
+        <tr class="text-center">
+            <th>رقم الفندق</th>
+
+            <th>اسم الفندق</th>
+            <th>عنوان الفندق</th>
+            <th>المدينة</th>
+            <th>رقم العاتف</th>
+            <th> البريد الإليكتروني</th>
+            <th colspan="2">إجراء </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model is not null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Address</td>
+                    <td>@item.City</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Email</td>
+                    <td><a asp-action="Delete" asp-route-Id="@item.Id"><i class="fa fa-trash text-danger"></i></a></td>
+                    <td><a asp-action="Edit" asp-route-Id="@item.Id"><i class="fa fa-edit text-success"></i></a></td>
+                </tr>
+
+            }
+        }
+
+
+    </tbody>
+</table>
